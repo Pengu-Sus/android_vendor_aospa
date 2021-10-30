@@ -59,8 +59,10 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
     dalvik.vm.dex2oat64.enabled=true
 
 # Dexpreopt
-# Don't dexpreopt prebuilts (For GMS)
+# Don't dexpreopt prebuilts. (For GMS).
+ifneq ($(TARGET_DISABLES_GMS), true)
 DONT_DEXPREOPT_PREBUILTS := true
+endif
 
 # Default filter
 PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := everything
@@ -110,10 +112,12 @@ PRODUCT_PACKAGES += \
     vendor.aospa.power-service
 
 # Google - GMS, Pixel, and Mainline Modules
+ifneq ($(TARGET_DISABLES_GMS), true)
 $(call inherit-product, vendor/google/gms/config.mk)
 $(call inherit-product, vendor/google/pixel/config.mk)
 ifneq ($(TARGET_EXCLUDE_GMODULES), true)
 $(call inherit-product-if-exists, vendor/google/modules/build/mainline_modules.mk)
+endif
 endif
 
 # HIDL
