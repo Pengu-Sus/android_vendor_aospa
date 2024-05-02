@@ -1,8 +1,12 @@
 #
-# Copyright (C) 2022 Paranoid Android
+# Copyright (C) 2024 Paranoid Android
 #
 # SPDX-License-Identifier: Apache-2.0
 #
 
 # Bootanimation
-PRODUCT_COPY_FILES += vendor/aospa/bootanimation/bootanimation.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation.zip
+ifneq ($(filter $(TARGET_BOOT_ANIMATION_RES),720 1080 1440 2160),)
+    PRODUCT_COPY_FILES += vendor/aospa/bootanimation/$(TARGET_BOOT_ANIMATION_RES).zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation.zip
+else
+    $(error "Invalid bootanimation resolution: $(TARGET_BOOT_ANIMATION_RES). Define TARGET_BOOT_ANIMATION_RES to 720/1080/1440/2160.")
+endif
