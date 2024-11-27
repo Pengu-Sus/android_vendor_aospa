@@ -18,8 +18,8 @@
         "revision":     "uvite-888"
     },
     {
-        "remote":       "aospa",
-        "repository":   "AOSPA/android_hardware_xiaomi",
+        "remote":       "github",
+        "repository":   "1xtAsh/android_hardware_xiaomi",
         "target_path":  "hardware/xiaomi",
         "revision":     "uvite"
     },
